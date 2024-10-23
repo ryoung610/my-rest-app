@@ -8,7 +8,7 @@ function App() {
 
   // useEffect hook to fetch data when the component mounts
   useEffect(() => {
-    fetch('https://<your-api-endpoint>/items')  // Replace <your-api-endpoint> with your actual API URL
+    fetch('https://https://y99b4dakck.execute-api.us-east-1.amazonaws.com/dev/itema')  // Replace <your-api-endpoint> with your actual API URL
       .then(response => response.json())
       .then(data => setItems(data))
       .catch(error => console.error('Error fetching items:', error));
