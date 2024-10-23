@@ -1,7 +1,19 @@
+import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  // State to hold fetched items
+  const [items, setItems] = useState([]);
+
+  // useEffect hook to fetch data when the component mounts
+  useEffect(() => {
+    fetch('https://<your-api-endpoint>/items')  // Replace <your-api-endpoint> with your actual API URL
+      .then(response => response.json())
+      .then(data => setItems(data))
+      .catch(error => console.error('Error fetching items:', error));
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -9,14 +21,15 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        {/* Rendering the items fetched from the API */}
+        <div>
+          <h1>Items List</h1>
+          <ul>
+            {items.map(item => (
+              <li key={item.id}>{item.name}</li>
+            ))}
+          </ul>
+        </div>
       </header>
     </div>
   );
